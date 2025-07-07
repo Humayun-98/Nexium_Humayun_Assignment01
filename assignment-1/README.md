@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+✍️ Assignment 1 - Quote Generator
+This is my first assignment for the Nexium AI-Enhanced Web Development Internship, focusing on building a clean, accessible Quote Generator web application.
 
-## Getting Started
+🚀 Features
+📝 Enter a topic (like life or motivation)
 
-First, run the development server:
+🔍 Filters & displays quotes from a local JSON dataset
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+🎲 If no matching topic, shows random quotes
+
+💅 Built using Next.js App Router, Tailwind CSS, ShadCN UI
+
+🛠 Tech Stack
+Tool	Purpose
+Next.js 14	React framework & routing
+TypeScript	Type-safe code
+TailwindCSS	Utility-first styling
+ShadCN UI	Elegant React components
+
+🚀 Getting Started
+This is a Next.js project bootstrapped with create-next-app.
+
+Install dependencies and run the development server:
+
+bash
+Copy
+Edit
+pnpm install
 pnpm dev
-# or
-bun dev
-```
+(or use npm, yarn, or bun as you prefer)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying app/page.tsx.
+The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📝 Learning Resources
+Next.js Documentation - Features & API
 
-## Learn More
+Learn Next.js - Interactive tutorial
 
-To learn more about Next.js, take a look at the following resources:
+Next.js GitHub
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌍 Deployment
+Deployed on Vercel using GitHub integration.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For Next.js deployment guides, check the official docs.
 
-## Deploy on Vercel
+📄 .env
+This project uses environment variables for future expansion.
+See the /.env.example file for structure.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🚀 Built with passion by Muhammad Humayun for Nexium AI-Enhanced Web Development Internship.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✅ All done — this keeps your original familiar create-next-app references but upgrades it with a professional, tailored context for your internship & future audience.
+
+If you want, I can also give you a standard commit message style guide for this assignment repo (like feat:, fix:, docs:).
+Just say the word! 🚀
