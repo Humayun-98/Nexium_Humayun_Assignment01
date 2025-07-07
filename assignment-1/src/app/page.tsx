@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -12,8 +12,18 @@ type QuotesData = Record<string, Quote[]>
 export default function Home() {
   const [quotes, setQuotes] = useState<Quote[]>([])
   const [topic, setTopic] = useState("")
+  const [darkMode, setDarkMode] = useState(false)
+  const [copiedIdx, setCopiedIdx] = useState<number | null>(null)
 
   const availableTopics = Object.keys(quotesData)
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  }, [darkMode])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,8 +49,25 @@ export default function Home() {
     }
   }
 
+  const handleCopy = (quote: Quote, idx: number) => {
+    navigator.clipboard.writeText(`"${quote.text}" — ${quote.author}`)
+    setCopiedIdx(idx)
+    setTimeout(() => setCopiedIdx(null), 1500)
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-8 space-y-8">
+    <main className="flex min-h-screen flex-col items-center justify-start p-8 space-y-8 transition-colors duration-300 bg-white text-black dark:bg-gray-900 dark:text-white">
+      {/* Theme Toggle */}
+      <div className="w-full flex justify-end mb-4">
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          aria-label="Toggle Theme"
+        >
+          {darkMode ? "🌙" : "☀️"}
+        </button>
+      </div>
+
       <h1 className="text-3xl font-bold mb-4">Quote Generator</h1>
 
       <form onSubmit={handleSubmit} className="w-full max-w-md flex flex-col space-y-4">
@@ -68,10 +95,21 @@ export default function Home() {
       <div className="w-full max-w-2xl space-y-4 mt-6">
         {quotes.length > 0 ? (
           quotes.map((quote, idx) => (
-            <Card key={idx}>
-              <CardContent className="p-4">
+            <Card
+              key={idx}
+              className="transform transition duration-300 hover:scale-105 fade-in"
+            >
+              <CardContent className="p-4 flex flex-col space-y-2">
                 <p className="text-xl">“{quote.text}”</p>
-                <p className="text-sm text-right mt-2">— {quote.author}</p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-sm">— {quote.author}</span>
+                  <button
+                    onClick={() => handleCopy(quote, idx)}
+                    className="text-xs text-blue-500 hover:underline"
+                  >
+                    {copiedIdx === idx ? "Copied!" : "Copy"}
+                  </button>
+                </div>
               </CardContent>
             </Card>
           ))
@@ -81,6 +119,16 @@ export default function Home() {
           )
         )}
       </div>
+
+      <style jsx>{`
+        .fade-in {
+          animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </main>
   )
 }
