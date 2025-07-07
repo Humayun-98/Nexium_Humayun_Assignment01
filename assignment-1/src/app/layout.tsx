@@ -22,3 +22,4 @@ export default function RootLayout({
     </html>
   )
 }
+// This layout wraps the entire application with a theme provider
