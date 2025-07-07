@@ -9,7 +9,7 @@ This repo serves as a portfolio of all the assignments and projects completed du
 
 Throughout this internship, I explored:
 
-- 🚀 **Next.js 14** App Router and Server Components
+- 🚀 **Next.js 15** App Router and Server Components
 - 🎨 **Tailwind CSS** for rapid, accessible UI styling
 - 🧩 **ShadCN UI** for elegant React components
 - 🌿 **Supabase** (PostgreSQL) & **MongoDB Atlas**
