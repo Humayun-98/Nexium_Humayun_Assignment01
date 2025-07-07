@@ -1,3 +1,4 @@
+/* 
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -42,6 +43,13 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
+*/
+
+/* UNCOMMENTED TAILWIND AND VARIABLES BELOW */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --radius: 0.625rem;
@@ -112,11 +120,59 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* ...rest of your CSS remains unchanged... */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-500;
   }
 }
+
+/* ========== BACKGROUND SCENES ========== */
+.day-scene {
+  background: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  animation: dayMove 30s linear infinite;
+  z-index: 0;
+}
+
+@keyframes dayMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.night-scene {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+.night-scene::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  top: 20%;
+  left: 40%;
+  box-shadow:
+    200px 300px white,
+    400px 100px white,
+    600px 200px white,
+    800px 150px white,
+    1000px 250px white;
+  animation: sparkle 3s linear infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.2; }
+}
+
