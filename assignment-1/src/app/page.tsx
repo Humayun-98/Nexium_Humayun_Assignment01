@@ -14,6 +14,7 @@ export default function Home() {
   const [topic, setTopic] = useState("")
   const [darkMode, setDarkMode] = useState(false)
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null)
+  const [rotating, setRotating] = useState(false)
 
   const availableTopics = Object.keys(quotesData)
 
@@ -55,13 +56,19 @@ export default function Home() {
     setTimeout(() => setCopiedIdx(null), 1500)
   }
 
+  const toggleTheme = () => {
+    setRotating(true)
+    setDarkMode(!darkMode)
+    setTimeout(() => setRotating(false), 500)
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-8 space-y-8 transition-colors duration-300 bg-white text-black dark:bg-gray-900 dark:text-white">
+    <main className="flex min-h-screen flex-col items-center justify-start p-6 md:p-8 space-y-8 transition-colors duration-300 bg-white text-black dark:bg-gray-900 dark:text-white">
       {/* Theme Toggle */}
       <div className="w-full flex justify-end mb-4">
         <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          onClick={toggleTheme}
+          className={`p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition transform ${rotating ? "rotate" : ""}`}
           aria-label="Toggle Theme"
         >
           {darkMode ? "🌙" : "☀️"}
@@ -75,8 +82,11 @@ export default function Home() {
           placeholder="Enter a topic..."
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
+          className="focus:ring-2 focus:ring-blue-400 transition transform hover:scale-105"
         />
-        <Button type="submit">Generate Quotes</Button>
+        <Button type="submit" className="transition transform hover:scale-105 focus:ring-2 focus:ring-blue-400">
+          Generate Quotes
+        </Button>
       </form>
 
       <div className="flex flex-wrap justify-center gap-2">
@@ -85,7 +95,7 @@ export default function Home() {
             key={t}
             variant="outline"
             onClick={() => handleTopicClick(t)}
-            className="text-sm"
+            className="text-sm transition transform hover:scale-105 shadow-sm"
           >
             {t}
           </Button>
@@ -97,7 +107,7 @@ export default function Home() {
           quotes.map((quote, idx) => (
             <Card
               key={idx}
-              className="transform transition duration-300 hover:scale-105 fade-in"
+              className="transform transition duration-300 hover:scale-105 hover:shadow-lg fade-in"
             >
               <CardContent className="p-4 flex flex-col space-y-2">
                 <p className="text-xl">“{quote.text}”</p>
@@ -128,7 +138,16 @@ export default function Home() {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        .rotate {
+          animation: spin 0.5s linear;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
       `}</style>
     </main>
   )
 }
+// This code is a Next.js page that implements a quote generator with dark mode support, topic filtering, and copy functionality.
+// It uses React hooks for state management and includes a simple form for user input.
