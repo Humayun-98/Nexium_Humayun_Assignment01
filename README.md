@@ -51,7 +51,7 @@ See `.env.example` for the environment structure.
 ---
 
 📈 **Always open to collaboration & networking.**  
-Connect with me on [LinkedIn](https://www.linkedin.com/in/muhammad-humayun-98/)!
+Connect with me on [LinkedIn](https://www.linkedin.com/in/m-humayun/)!
 
 ---
 
