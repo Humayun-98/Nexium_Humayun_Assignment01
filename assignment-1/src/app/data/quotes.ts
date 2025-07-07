@@ -1,4 +1,4 @@
-export const quotes = {
+const quotes = {
   love: [
     { text: "Love all, trust a few, do wrong to none.", author: "William Shakespeare" },
     { text: "Being deeply loved gives you strength, loving deeply gives you courage.", author: "Lao Tzu" },
@@ -59,4 +59,5 @@ export const quotes = {
     { text: "Have patience. All things are difficult before they become easy.", author: "Saadi" },
     { text: "Patience is not the ability to wait, but the ability to keep a good attitude while waiting.", author: "Joyce Meyer" }
   ]
-};
+}
+export default quotes
