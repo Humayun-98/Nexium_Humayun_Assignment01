@@ -30,16 +30,16 @@ export default function Home() {
 
   const handleTopicClick = (selectedTopic: string) => {
     setTopic(selectedTopic)
+    const lower = selectedTopic.trim().toLowerCase()
+    if ((quotesData as QuotesData)[lower]) {
+      setQuotes((quotesData as QuotesData)[lower])
+    } else {
+      setQuotes([])
+    }
   }
 
   return (
     <main className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background animations */}
-      <div className="absolute inset-0 z-0">
-        <div className="day-scene dark:hidden"></div>
-        <div className="night-scene hidden dark:block"></div>
-      </div>
-
       <div className="relative z-10 w-full max-w-xl bg-gradient-to-br from-pink-300 via-purple-300 to-blue-300 dark:from-purple-700 dark:via-blue-800 dark:to-black rounded-3xl p-8 shadow-xl backdrop-blur-lg">
         <h1 className="text-4xl font-bold text-center mb-6 text-gray-800 dark:text-white">Quotly</h1>
         
@@ -73,21 +73,14 @@ export default function Home() {
         <div className="mt-8 space-y-4">
           {quotes.length > 0 ? (
             quotes.map((quote, idx) => (
-              <div
-                key={idx}
-                className="bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 dark:from-purple-900 dark:via-blue-900 dark:to-black p-4 rounded-xl shadow-md"
-              >
-                <p className="text-lg font-medium text-gray-800 dark:text-white">
-                  "{quote.text}"
-                </p>
-                <p className="text-sm text-right mt-2 italic text-gray-600 dark:text-gray-300">
-                  — {quote.author}
-                </p>
+              <div key={idx} className="p-4 bg-white/80 dark:bg-gray-800 rounded-lg shadow">
+                <p className="text-lg italic">"{quote.text}"</p>
+                <p className="text-right mt-2 text-sm text-gray-600 dark:text-gray-300">— {quote.author}</p>
               </div>
             ))
           ) : (
             topic && (
-              <p className="text-center text-gray-600 dark:text-gray-300 mt-6">
+              <p className="text-center text-gray-500 dark:text-gray-400">
                 No quotes found for "{topic}". Try another topic.
               </p>
             )
